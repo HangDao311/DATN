@@ -1,15 +1,7 @@
+<script setup></script>
+
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <h1 class="text-red-300 text-3xl font-bold underline">Hello world!</h1>
 </template>
 
-<script>
-export default {
-  name: "App"
-};
-</script>
-
-<style>
-
-</style>
+<style scoped></style>
