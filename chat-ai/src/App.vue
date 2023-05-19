@@ -1,7 +1,9 @@
-<script setup></script>
-
 <template>
-  <h1 class="text-red-300 text-3xl font-bold underline">Hello world!</h1>
+  <router-view />
 </template>
-
-<style scoped></style>
+<script setup></script>
+<style scoped>
+.test {
+  background-color: black;
+}
+</style>
