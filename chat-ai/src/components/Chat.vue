@@ -27,10 +27,15 @@ export default {
       newMessage: "",
     };
   },
+  mounted() {
+    const questions = JSON.parse(localStorage.getItem("QuesAns"));
+    this.messages = questions || [];
+  },
   methods: {
     async sendMessage() {
       if (this.newMessage.trim() !== "") {
         this.messages.push(this.newMessage);
+        localStorage.setItem("QuesAns", JSON.stringify(this.messages));
         this.openAiCompletion(this.newMessage);
         this.newMessage = "";
       }
@@ -47,6 +52,8 @@ export default {
         });
         const reply = completion.data.choices[0].message.content;
         this.messages.push(reply);
+
+        localStorage.setItem("QuesAns", JSON.stringify(this.messages));
       } catch (error) {
         if (error.response) {
           console.error(error.response.status);
@@ -55,6 +62,9 @@ export default {
           console.error(error.message);
         }
       }
+    },
+    hangXik() {
+      const questionAnswers = [];
     },
   },
 };

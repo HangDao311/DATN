@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar">
-    <button class="sidebar-button border-2 border-rose-500">+ new chat</button>
-    <button class="sidebar-button border-2 border-rose-500">+ new chat</button>
-    <button class="sidebar-button border-2 border-rose-500">+ new chat</button>
-    <button class="sidebar-button border-2 border-rose-500">+ new chat</button>
+    <button class="sidebar-button border-2 border-rose-500"></button>
+    <button class="sidebar-button border-2 border-rose-500">PE 2</button>
+    <button class="sidebar-button border-2 border-rose-500">PE 3</button>
+    <button class="sidebar-button border-2 border-rose-500">PE 4</button>
     <ul class="sidebar-list m-8">
       <li v-for="(item, index) in list" :key="index">{{ item }}</li>
     </ul>
@@ -14,10 +14,9 @@
 export default {
   name: "Sidebar",
   data() {
-    return {
-      list: ["Mục 1", "Mục 2", "Mục 3", "Mục 4", "Mục 5"],
-    };
+    return {};
   },
+  methods: {},
 };
 </script>
 
