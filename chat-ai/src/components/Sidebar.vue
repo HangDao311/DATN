@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <button class="sidebar-button border-2 border-rose-500"></button>
+    <button class="sidebar-button border-2 border-rose-500">PE 1</button>
     <button class="sidebar-button border-2 border-rose-500">PE 2</button>
     <button class="sidebar-button border-2 border-rose-500">PE 3</button>
     <button class="sidebar-button border-2 border-rose-500">PE 4</button>
