@@ -33,18 +33,33 @@ export default {
     return {
       messages: [],
       newMessage: "",
+      chatId: null
     };
   },
   mounted() {
-    const questions = JSON.parse(localStorage.getItem("QuesAns"));
-    this.messages = questions || [];
+    this.loadChat();
   },
   methods: {
+    loadChat() {
+      this.chatId = this.$route.params.id;
+      const questions = JSON.parse(localStorage.getItem(this.chatId));
+      this.messages = questions || [];
+    },
+    createChatIfNotExist(chatId) {
+      const chat = localStorage.getItem(chatId);
+      if (!chat) {
+        localStorage.setItem(chatId, JSON.stringify([]));
+      }
+    },
     async sendMessage() {
       if (this.newMessage.trim() !== "") {
+        if (!this.chatId) {
+          this.chatId = this.newMessage.substring(0, 15);
+        }
+        this.createChatIfNotExist(this.chatId);
         this.messages.push(this.newMessage);
-        localStorage.setItem("QuesAns", JSON.stringify(this.messages));
-        this.openAiCompletion(this.newMessage);
+        localStorage.setItem(this.chatId, JSON.stringify(this.messages));
+        await this.openAiCompletion(this.newMessage);
         this.newMessage = "";
       }
     },
@@ -53,15 +68,11 @@ export default {
         const completion = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: prompt }],
-          top_p: 0,
-          temperature: 0,
-          frequency_penalty: 0,
           max_tokens: 800,
         });
         const reply = completion.data.choices[0].message.content;
         this.messages.push(reply);
-
-        localStorage.setItem("QuesAns", JSON.stringify(this.messages));
+        localStorage.setItem(this.chatId, JSON.stringify(this.messages));
       } catch (error) {
         if (error.response) {
           console.error(error.response.status);

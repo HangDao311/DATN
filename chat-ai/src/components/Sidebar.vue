@@ -1,11 +1,20 @@
 <template>
   <div class="sidebar">
-    <button class="sidebar-button border-2 border-rose-500">PE 1</button>
-    <button class="sidebar-button border-2 border-rose-500">PE 2</button>
-    <button class="sidebar-button border-2 border-rose-500">PE 3</button>
-    <button class="sidebar-button border-2 border-rose-500">PE 4</button>
-    <ul class="sidebar-list m-8">
-      <li v-for="(item, index) in list" :key="index">{{ item }}</li>
+    <button
+      @click="onRedirect('')"
+      class="sidebar-button border-2 border-rose-500"
+    >
+      New Chat
+    </button>
+    <ul class="sidebar-list">
+      <li v-for="(key, index) in topics" :key="index">
+        <button
+          @click="onRedirect(key)"
+          class="sidebar-button border-2 border-blue-500"
+        >
+          {{ key }}
+        </button>
+      </li>
     </ul>
   </div>
 </template>
@@ -14,16 +23,25 @@
 export default {
   name: "Sidebar",
   data() {
-    return {};
+    return {
+      topics: [],
+    };
   },
-  methods: {},
+  mounted() {
+    this.topics = Object.keys(localStorage);
+  },
+  methods: {
+    onRedirect(path) {
+      window.location.href = `/${path}`;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .sidebar {
   color: white;
-  width: 200px;
+  min-width: 250px;
   height: 100vh;
   background-color: black;
   padding: 20px;
