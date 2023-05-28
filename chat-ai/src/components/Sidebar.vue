@@ -8,12 +8,9 @@
     </button>
     <ul class="sidebar-list">
       <li v-for="(key, index) in topics" :key="index">
-        <button
-          @click="onRedirect(key)"
-          class="sidebar-button border-2 border-blue-500"
-        >
-          {{ key.replace("_", "") }}
-          <button @click="onDeleteChat(key)" class="red-500">| Delete</button>
+        <button class="sidebar-button border-2 border-blue-500">
+          <span @click="onRedirect(key)">{{ key }}</span>
+          <button @click="onDeleteChat(key)" class="red-500">|X Delete</button>
         </button>
       </li>
     </ul>
@@ -37,9 +34,7 @@ export default {
     },
     onDeleteChat(chatId) {
       localStorage.removeItem(chatId);
-      setTimeout(() => {
-        this.$router.go();
-      }, 500);
+      window.location.href = "/";
     },
   },
 };

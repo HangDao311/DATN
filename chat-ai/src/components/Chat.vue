@@ -45,6 +45,9 @@ export default {
       this.chatId = this.$route.params.id;
       const questions = JSON.parse(localStorage.getItem(this.chatId));
       this.messages = questions || [];
+      if (!questions){
+        this.$router.push({path: '/'});
+      }
     },
     createChatIfNotExist(chatId) {
       const chat = localStorage.getItem(chatId);
@@ -55,7 +58,7 @@ export default {
     async sendMessage() {
       if (this.newMessage.trim() !== "") {
         if (!this.chatId) {
-          this.chatId = "_" + this.newMessage.substring(0, 20)
+          this.chatId = `Chat_${crypto.randomUUID().substring(0, 5)}`
         }
         this.createChatIfNotExist(this.chatId);
         this.messages.push(this.newMessage);
