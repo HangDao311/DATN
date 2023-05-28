@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div class="p-2 w-full">
     <div class="max-h-full overscroll-auto">
       <p
         :class="getMessageStyle(message, index)"
@@ -14,10 +14,10 @@
         v-model="newMessage"
         @keyup.enter="sendMessage"
         type="text"
-        class="bg-gray-300 p-3 w-3/5"
+        class="bg-gray-300 p-3 w-2/3"
         placeholder="Nhập câu hỏi...."
       />
-      <button class="border-solid border-2 bg-gray-500" @click="sendMessage">
+      <button class="w-[100px] border-solid border-2 bg-gray-500" @click="sendMessage">
         Send
       </button>
     </div>
