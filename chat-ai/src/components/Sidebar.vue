@@ -12,7 +12,8 @@
           @click="onRedirect(key)"
           class="sidebar-button border-2 border-blue-500"
         >
-          {{ key }}
+          {{ key.replace("_", "") }}
+          <button @click="onDeleteChat(key)" class="red-500">| Delete</button>
         </button>
       </li>
     </ul>
@@ -33,6 +34,12 @@ export default {
   methods: {
     onRedirect(path) {
       window.location.href = `/${path}`;
+    },
+    onDeleteChat(chatId) {
+      localStorage.removeItem(chatId);
+      setTimeout(() => {
+        this.$router.go();
+      }, 500);
     },
   },
 };

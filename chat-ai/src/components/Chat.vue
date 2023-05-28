@@ -9,7 +9,8 @@
         <pre class="max-w-full overflow-x-auto whitespace-pre-wrap">{{ formatText(message) }}</pre>
       </p>
     </div>
-    <div class="flex justify-center m-8">
+    <div class="flex justify-center align-bottom m-8">
+      <div class="flex-1"></div>
       <input
         v-model="newMessage"
         @keyup.enter="sendMessage"
@@ -54,7 +55,7 @@ export default {
     async sendMessage() {
       if (this.newMessage.trim() !== "") {
         if (!this.chatId) {
-          this.chatId = this.newMessage.substring(0, 15);
+          this.chatId = "_" + this.newMessage.substring(0, 20)
         }
         this.createChatIfNotExist(this.chatId);
         this.messages.push(this.newMessage);
