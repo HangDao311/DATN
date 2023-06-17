@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2 w-full">
+  <div class="p-2 w-full bg-slate-600">
     <div class="max-h-full overscroll-auto">
       <p
         :class="getMessageStyle(message, index)"
@@ -10,7 +10,6 @@
       </p>
     </div>
     <div class="flex justify-center align-bottom m-8">
-      <div class="flex-1"></div>
       <input
         v-model="newMessage"
         @keyup.enter="sendMessage"
